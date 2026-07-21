@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-const siteUrl = 'https://example.com'
+const siteUrl = 'https://vegaplaysystems.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'XENOVA | Commercial Claw Machines for Sale in the USA',
-    template: '%s | XENOVA',
+    default: 'Vega Play Systems | Commercial Claw Machines for Sale in the USA',
+    template: '%s | Vega Play Systems',
   },
   description:
     'We provide commercial claw machines for arcades, malls, family entertainment centers, trampoline parks, restaurants, and claw machine store operators in the United States.',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description:
       'Premium commercial claw machines for arcades, malls, family entertainment centers, trampoline parks, and restaurants across the United States.',
     url: siteUrl,
-    siteName: 'XENOVA',
+    siteName: 'Vega Play Systems',
     locale: 'en_US',
     type: 'website',
     images: [{ url: '/images/arcade-interior.jpg', width: 1200, height: 630 }],

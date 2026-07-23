@@ -50,7 +50,7 @@ export function SiteHeader() {
           <Button
             render={<a href="#contact" />}
             nativeButton={false}
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex clip-corner"
           >
             Request Info
           </Button>
@@ -93,7 +93,7 @@ export function SiteHeader() {
               <Button
                 render={<a href="#contact" />}
                 nativeButton={false}
-                className="w-full"
+                className="w-full clip-corner"
                 onClick={() => setOpen(false)}
               >
                 Request Info

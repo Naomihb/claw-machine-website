@@ -32,7 +32,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-4 pb-12 pt-14 sm:px-6 lg:px-8 lg:pb-20 lg:pt-20">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl">
-            <span className="inline-flex items-center rounded-full bg-accent/30 px-3 py-1 text-sm font-medium text-accent-foreground">
+            <span className="inline-flex items-center clip-corner bg-accent/30 px-3 py-1 text-sm font-medium text-accent-foreground">
               Commercial claw machines · United States
             </span>
             <h1 className="mt-6 text-pretty font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
@@ -50,7 +50,7 @@ export function Hero() {
                 render={<a href="#contact" />}
                 nativeButton={false}
                 size="lg"
-                className="text-base"
+                className="text-base clip-corner"
               >
                 Request Product Information
               </Button>
@@ -59,7 +59,7 @@ export function Hero() {
                 nativeButton={false}
                 size="lg"
                 variant="outline"
-                className="text-base"
+                className="text-base clip-corner"
               >
                 Contact Us
               </Button>

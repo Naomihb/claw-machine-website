@@ -1,14 +1,15 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Grotesk, Geist_Mono } from 'next/font/google'
+import { Inter, Rajdhani, Geist_Mono } from 'next/font/google'
 import Script from 'next/script'
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
 const inter = Inter({ variable: '--font-inter', subsets: ['latin'] })
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
+const rajdhani = Rajdhani({
+  variable: '--font-rajdhani',
   subsets: ['latin'],
+  weight: ['600', '700'],
 })
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
@@ -78,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} bg-background`}
+      className={`${inter.variable} ${rajdhani.variable} ${geistMono.variable} bg-background`}
     >
       <body className="font-sans antialiased">
         {children}

@@ -82,6 +82,17 @@
   --sidebar-accent-foreground: oklch(0.96 0.014 279);
   --sidebar-border: oklch(0.96 0.01 279 / 12%);
   --sidebar-ring: oklch(0.746 0.16 232.661);
+  --rainbow-gradient: conic-gradient(
+    from 0deg,
+    #f472b6,
+    #a78bfa,
+    #38bdf8,
+    #2dd4bf,
+    #4ade80,
+    #facc15,
+    #fb923c,
+    #f472b6
+  );
 }
 
 @layer base {
@@ -91,13 +102,27 @@
   body {
     @apply bg-background text-foreground;
     background-image:
-      radial-gradient(circle at 76% 8%, oklch(0.7 0.15 182 / 22%), transparent 45%),
-      radial-gradient(circle at 8% 12%, oklch(0.7 0.15 233 / 22%), transparent 45%),
-      radial-gradient(circle at 55% 95%, oklch(0.65 0.16 162 / 14%), transparent 45%);
+      radial-gradient(ellipse 90% 60% at 50% -10%, oklch(0.28 0.05 235 / 55%), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 85% 60%, oklch(0.24 0.045 190 / 35%), transparent 65%),
+      radial-gradient(ellipse 80% 55% at 10% 95%, oklch(0.22 0.04 235 / 40%), transparent 65%),
+      linear-gradient(180deg, oklch(0.14 0.025 265) 0%, oklch(0.155 0.03 245) 45%, oklch(0.15 0.03 210) 100%);
     background-attachment: fixed;
   }
   html {
     @apply font-sans;
+  }
+  html,
+  body {
+    cursor: url('/cursor-claw.svg') 16 3, auto;
+  }
+  a,
+  button,
+  [role='button'],
+  input[type='submit'],
+  input[type='button'],
+  select,
+  summary {
+    cursor: url('/cursor-claw-active.svg') 16 3, pointer;
   }
 }
 
@@ -110,7 +135,106 @@
 }
 
 @layer utilities {
-  .clip-corner {
-    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  /*
+   * Standardized rainbow-glow treatment for every image/card on the site:
+   * a thin, sharp neon ring (2-3px) that hugs the element's own edge,
+   * emitting outward, plus a soft blurred halo just beyond it that fades
+   * to nothing. Same rainbow sequence and same recipe everywhere for
+   * consistency; only the reach (spread/blur) varies slightly by context
+   * (a lone hero photo can afford a little more room than a tightly
+   * packed grid card). Fixed pixel values (not percentages) keep it from
+   * ever scaling into a large background wash or merging with a
+   * neighboring element's glow.
+   */
+  .led-bloom {
+    position: relative;
+    isolation: isolate;
+  }
+  .led-bloom::before {
+    content: '';
+    position: absolute;
+    inset: var(--bloom-spread, -20px);
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--glow, var(--rainbow-gradient));
+    filter: blur(var(--bloom-blur, 14px));
+    opacity: var(--bloom-opacity, 0.45);
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .led-bloom:hover::before {
+    opacity: var(--bloom-opacity-hover, 0.65);
+  }
+  .led-bloom::after {
+    content: '';
+    position: absolute;
+    inset: var(--ring-inset, -2px);
+    z-index: 1;
+    border-radius: inherit;
+    padding: var(--ring-thickness, 2px);
+    background: var(--glow, var(--rainbow-gradient));
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: var(--ring-opacity, 0.85);
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .led-bloom:hover::after {
+    opacity: var(--ring-opacity-hover, 1);
+  }
+
+  /* Subtle, ambient hover for decorative cards that don't emit light. */
+  .surface-hover {
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .surface-hover:hover {
+    border-color: color-mix(in oklch, var(--color-primary) 35%, var(--color-border));
+    box-shadow: 0 10px 30px -12px oklch(0 0 0 / 45%);
+    transform: translateY(-2px);
+  }
+
+  /* Very subtle brand-colored glow reserved for the wordmark icon. */
+  .logo-glow {
+    filter: drop-shadow(0 0 5px oklch(0.746 0.16 232.661 / 45%));
+  }
+
+  /* Standard primary-button glow — the only button that emits light.
+     Larger and softer than a UI shadow, low opacity so it never reads
+     as "brighter," just gently lit. */
+  .btn-glow {
+    box-shadow: 0 6px 32px -6px oklch(0.746 0.16 232.661 / 28%);
+    transition: box-shadow 0.3s ease;
+  }
+  .btn-glow:hover {
+    box-shadow: 0 8px 44px -6px oklch(0.746 0.16 232.661 / 38%);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: var(--twinkle-min, 0.2);
+  }
+  50% {
+    opacity: var(--twinkle-max, 0.75);
+  }
+}
+
+.twinkle {
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twinkle {
+    animation: none;
+    opacity: var(--twinkle-max, 0.6);
   }
 }

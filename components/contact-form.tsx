@@ -14,7 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { siteConfig } from '@/lib/site-config'
 
 const businessTypes = [
   'Arcade',
@@ -192,23 +191,6 @@ export function ContactForm() {
           >
             {submitting ? 'Submitting…' : 'Submit Request'}
           </Button>
-          <p className="text-sm text-muted-foreground">
-            Prefer to talk now? Call{' '}
-            <a
-              href={`tel:${siteConfig.phoneHref}`}
-              className="font-medium text-primary underline-offset-4 hover:underline"
-            >
-              {siteConfig.phoneDisplay}
-            </a>{' '}
-            or email{' '}
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="font-medium text-primary underline-offset-4 hover:underline"
-            >
-              {siteConfig.email}
-            </a>
-            .
-          </p>
         </div>
       </form>
     </>

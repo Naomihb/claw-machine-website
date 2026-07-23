@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { StarField } from '@/components/star-field'
 
 const audiences = [
   'Mall owners',
@@ -14,17 +15,35 @@ const audiences = [
 
 export function BusinessOpportunity() {
   return (
-    <section id="business" className="border-t border-border bg-background">
+    <section
+      id="business"
+      className="relative overflow-hidden border-t border-border bg-background"
+    >
+      <StarField />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="order-2 overflow-hidden rounded-2xl border border-border shadow-sm lg:order-1">
-            <Image
-              src="/images/venue-players.jpg"
-              alt="Guests playing at a wall of glowing claw machines inside a busy family entertainment center"
-              width={1000}
-              height={750}
-              className="h-full w-full object-cover"
-            />
+          <div
+            className="led-bloom order-2 rounded-2xl lg:order-1"
+            style={{
+              ['--bloom-spread' as string]: '-46px',
+              ['--bloom-blur' as string]: '24px',
+              ['--bloom-opacity' as string]: 0.4,
+              ['--bloom-opacity-hover' as string]: 0.55,
+              ['--ring-inset' as string]: '-3px',
+              ['--ring-thickness' as string]: '3px',
+              ['--ring-opacity' as string]: 0.9,
+              ['--ring-opacity-hover' as string]: 1,
+            }}
+          >
+            <div className="overflow-hidden rounded-2xl border border-border">
+              <Image
+                src="/images/venue-players.jpg"
+                alt="Guests playing at a wall of glowing claw machines inside a busy family entertainment center"
+                width={1000}
+                height={750}
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
 
           <div className="order-1 max-w-xl lg:order-2">
@@ -43,7 +62,7 @@ export function BusinessOpportunity() {
               {audiences.map((audience) => (
                 <span
                   key={audience}
-                  className="rounded-full border border-border bg-secondary px-3 py-1 text-sm text-secondary-foreground"
+                  className="rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted-foreground"
                 >
                   {audience}
                 </span>

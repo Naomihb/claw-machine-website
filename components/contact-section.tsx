@@ -1,10 +1,15 @@
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
+import { StarField } from '@/components/star-field'
 import { siteConfig } from '@/lib/site-config'
 
 export function ContactSection() {
   return (
-    <section id="contact" className="border-t border-border bg-muted/40">
+    <section
+      id="contact"
+      className="relative overflow-hidden border-t border-border bg-muted/40"
+    >
+      <StarField />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl">
@@ -17,30 +22,8 @@ export function ContactSection() {
             </p>
 
             <ul className="mt-8 space-y-4">
-              <li>
-                <a
-                  href={`tel:${siteConfig.phoneHref}`}
-                  className="flex items-center gap-3 text-base font-medium transition-colors hover:text-primary"
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Phone className="h-5 w-5" />
-                  </span>
-                  {siteConfig.phoneDisplay}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-3 text-base font-medium transition-colors hover:text-primary"
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Mail className="h-5 w-5" />
-                  </span>
-                  {siteConfig.email}
-                </a>
-              </li>
               <li className="flex items-center gap-3 text-base font-medium">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <MapPin className="h-5 w-5" />
                 </span>
                 Serving the {siteConfig.serviceArea}

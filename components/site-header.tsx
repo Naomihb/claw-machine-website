@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
 import { ClawLogo } from '@/components/claw-logo'
@@ -21,7 +21,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#home" className="flex items-center gap-2">
-          <ClawLogo className="h-8 w-8 text-primary" />
+          <ClawLogo className="logo-glow h-8 w-8 text-primary" />
           <span className="font-heading text-lg font-bold tracking-tight">
             {siteConfig.businessName}
           </span>
@@ -40,17 +40,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${siteConfig.phoneHref}`}
-            className="hidden items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:flex"
-          >
-            <Phone className="h-4 w-4" />
-            {siteConfig.phoneDisplay}
-          </a>
           <Button
             render={<a href="#contact" />}
             nativeButton={false}
-            className="hidden sm:inline-flex clip-corner"
+            className="hidden sm:inline-flex"
           >
             Request Info
           </Button>
@@ -83,17 +76,10 @@ export function SiteHeader() {
               </a>
             ))}
             <div className="mt-2 flex flex-col gap-2">
-              <a
-                href={`tel:${siteConfig.phoneHref}`}
-                className="flex items-center gap-2 rounded-md px-3 py-2 text-base font-medium text-muted-foreground"
-              >
-                <Phone className="h-4 w-4" />
-                {siteConfig.phoneDisplay}
-              </a>
               <Button
                 render={<a href="#contact" />}
                 nativeButton={false}
-                className="w-full clip-corner"
+                className="w-full"
                 onClick={() => setOpen(false)}
               >
                 Request Info

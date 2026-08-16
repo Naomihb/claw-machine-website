@@ -13,9 +13,9 @@ export default function Page() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <AboutMachines />
         <ProductGrid />
         <BusinessOpportunity />
+        <AboutMachines />
         <WhyUs />
         <ContactSection />
       </main>

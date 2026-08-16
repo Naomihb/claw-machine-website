@@ -17,7 +17,7 @@ export function BusinessOpportunity() {
   return (
     <section
       id="business"
-      className="relative overflow-hidden border-t border-border bg-background"
+      className="relative scroll-mt-20 overflow-hidden border-t border-border bg-background"
     >
       <StarField />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
@@ -70,7 +70,7 @@ export function BusinessOpportunity() {
             </div>
 
             <Button
-              render={<a href="#contact" />}
+              render={<a href="/#contact" />}
               nativeButton={false}
               size="lg"
               className="mt-8 text-base"

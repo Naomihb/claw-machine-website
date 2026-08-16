@@ -9,7 +9,7 @@ export function ProductGrid() {
   return (
     <section
       id="machines"
-      className="relative overflow-hidden border-t border-border bg-muted/40"
+      className="relative scroll-mt-20 overflow-hidden border-t border-border bg-muted/40"
     >
       <StarField />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">

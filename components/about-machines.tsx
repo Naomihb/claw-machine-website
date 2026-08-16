@@ -14,7 +14,7 @@ export function AboutMachines() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden border-t border-border bg-background"
+      className="relative scroll-mt-20 overflow-hidden border-t border-border bg-background"
     >
       <StarField />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">

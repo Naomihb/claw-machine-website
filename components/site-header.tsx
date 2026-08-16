@@ -7,11 +7,11 @@ import { siteConfig } from '@/lib/site-config'
 import { ClawLogo } from '@/components/claw-logo'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Machines', href: '#machines' },
-  { label: 'Business Opportunity', href: '#business' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'Machines', href: '/#machines' },
+  { label: 'Business Opportunity', href: '/#business' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export function SiteHeader() {
@@ -20,7 +20,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#home" className="flex items-center gap-2">
+        <a href="/#home" className="flex items-center gap-2">
           <ClawLogo className="logo-glow h-8 w-8 text-primary" />
           <span className="font-heading text-lg font-bold tracking-tight">
             {siteConfig.businessName}
@@ -41,7 +41,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Button
-            render={<a href="#contact" />}
+            render={<a href="/#contact" />}
             nativeButton={false}
             className="hidden sm:inline-flex"
           >
@@ -77,7 +77,7 @@ export function SiteHeader() {
             ))}
             <div className="mt-2 flex flex-col gap-2">
               <Button
-                render={<a href="#contact" />}
+                render={<a href="/#contact" />}
                 nativeButton={false}
                 className="w-full"
                 onClick={() => setOpen(false)}

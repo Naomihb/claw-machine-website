@@ -4,7 +4,7 @@ import { StarField } from '@/components/star-field'
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden">
+    <section id="home" className="relative scroll-mt-20 overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
@@ -30,7 +30,7 @@ export function Hero() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button
-                render={<a href="#contact" />}
+                render={<a href="/#contact" />}
                 nativeButton={false}
                 size="lg"
                 className="text-base"
@@ -38,7 +38,7 @@ export function Hero() {
                 Request Product Information
               </Button>
               <Button
-                render={<a href="#contact" />}
+                render={<a href="/#contact" />}
                 nativeButton={false}
                 size="lg"
                 variant="outline"

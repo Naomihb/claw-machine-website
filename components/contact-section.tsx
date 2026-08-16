@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react'
+import { MapPin, Phone, Building2 } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
 import { StarField } from '@/components/star-field'
 import { siteConfig } from '@/lib/site-config'
@@ -7,7 +7,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-border bg-muted/40"
+      className="relative scroll-mt-20 overflow-hidden border-t border-border bg-muted/40"
     >
       <StarField />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
@@ -27,6 +27,23 @@ export function ContactSection() {
                   <MapPin className="h-5 w-5" />
                 </span>
                 Serving the {siteConfig.serviceArea}
+              </li>
+              <li className="flex items-center gap-3 text-base font-medium">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Phone className="h-5 w-5" />
+                </span>
+                <a
+                  href={`tel:${siteConfig.phoneHref}`}
+                  className="transition-colors hover:text-primary"
+                >
+                  {siteConfig.phoneDisplay}
+                </a>
+              </li>
+              <li className="flex items-center gap-3 text-base font-medium">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Building2 className="h-5 w-5" />
+                </span>
+                {siteConfig.address}
               </li>
             </ul>
           </div>

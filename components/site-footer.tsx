@@ -2,11 +2,11 @@ import { ClawLogo } from '@/components/claw-logo'
 import { siteConfig } from '@/lib/site-config'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Machines', href: '#machines' },
-  { label: 'Business Opportunity', href: '#business' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'Machines', href: '/#machines' },
+  { label: 'Business Opportunity', href: '/#business' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export function SiteFooter() {
@@ -72,11 +72,22 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5">
               <li>
                 <a
-                  href="#contact"
+                  href="/#contact"
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Request information
                 </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${siteConfig.phoneHref}`}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {siteConfig.phoneDisplay}
+                </a>
+              </li>
+              <li className="text-sm text-muted-foreground">
+                {siteConfig.address}
               </li>
               <li className="text-sm text-muted-foreground">
                 Service area: {siteConfig.serviceArea}
@@ -90,7 +101,7 @@ export function SiteFooter() {
             &copy; {year} {siteConfig.businessName}. All rights reserved.
           </p>
           <a
-            href="#home"
+            href="/#home"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Back to top &uarr;

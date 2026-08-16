@@ -141,7 +141,10 @@ export function ContactForm() {
         </div>
         <div className="grid gap-2">
           <Label htmlFor="businessType">Business Type</Label>
-          <Select value={businessType} onValueChange={setBusinessType}>
+          <Select
+            value={businessType}
+            onValueChange={(value) => setBusinessType(value ?? '')}
+          >
             <SelectTrigger id="businessType" className="w-full">
               <SelectValue placeholder="Select business type" />
             </SelectTrigger>

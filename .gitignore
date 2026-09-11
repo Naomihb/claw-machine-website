@@ -20,5 +20,6 @@ node_modules
 /test-results/
 /coverage/
 
-# Local pnpm tooling config (not part of the project)
+# Local pnpm tooling config (not part of the project — npm is used for this repo)
 pnpm-workspace.yaml
+pnpm-lock.yaml

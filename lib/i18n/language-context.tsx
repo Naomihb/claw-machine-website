@@ -32,9 +32,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('en')
 
   useEffect(() => {
+    // Intentionally reading localStorage and syncing state after mount,
+    // rather than via a lazy useState initializer: this component is
+    // server-rendered, so reading localStorage during the initial render
+    // would produce a client/server text mismatch (hydration error). We
+    // accept the one extra render here in exchange for a safe hydration.
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY)
       if (stored === 'en' || stored === 'zh') {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- see comment above
         setLanguageState(stored)
       }
     } catch {

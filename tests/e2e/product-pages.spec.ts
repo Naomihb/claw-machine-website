@@ -10,7 +10,10 @@ test.describe('Product detail pages', () => {
       expect(response?.status(), `expected 200 for /products/${product.slug}`).toBe(200)
 
       await expect(page.getByRole('heading', { name: product.name, level: 1 })).toBeVisible()
-      await expect(page.getByText(product.bestFor)).toBeVisible()
+      // Scoped to the "Best for: ..." line specifically — a bare getByText(product.bestFor)
+      // can also match the sitewide footer tagline, which shares overlapping phrases
+      // (e.g. "malls, family entertainment centers") with some products' bestFor values.
+      await expect(page.getByText(`Best for: ${product.bestFor}`)).toBeVisible()
 
       // The main product image should actually load (not a broken image).
       const mainImage = page.locator('img').first()

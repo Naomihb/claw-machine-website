@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Contact form', () => {
   test('renders on the homepage with the expected fields', async ({ page }) => {
     await page.goto('/#contact')
-    await expect(page.getByLabel('Name')).toBeVisible()
+    await expect(page.getByLabel('Name', { exact: true })).toBeVisible()
     await expect(page.getByLabel('Email Address')).toBeVisible()
     await expect(page.getByRole('button', { name: /submit request/i })).toBeVisible()
   })
@@ -20,7 +20,7 @@ test.describe('Contact form', () => {
     })
 
     await page.goto('/#contact')
-    await page.getByLabel('Name').fill('Test User')
+    await page.getByLabel('Name', { exact: true }).fill('Test User')
     await page.getByLabel('Email Address').fill('test@example.com')
     await page.getByRole('button', { name: /submit request/i }).click()
 
@@ -37,7 +37,7 @@ test.describe('Contact form', () => {
     })
 
     await page.goto('/#contact')
-    await page.getByLabel('Name').fill('Test User')
+    await page.getByLabel('Name', { exact: true }).fill('Test User')
     await page.getByLabel('Email Address').fill('test@example.com')
     await page.getByRole('button', { name: /submit request/i }).click()
 

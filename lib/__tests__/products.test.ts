@@ -31,6 +31,23 @@ describe('products data', () => {
     },
   )
 
+  const CJK_RANGE = /[一-鿿]/
+
+  it.each(products.map((p) => [p.slug, p] as const))(
+    'product "%s" has Simplified Chinese translations populated',
+    (_slug, product) => {
+      expect(product.bestForZh.trim().length).toBeGreaterThan(0)
+      expect(product.bestForZh).toMatch(CJK_RANGE)
+      expect(product.descriptionZh.trim().length).toBeGreaterThan(0)
+      expect(product.descriptionZh).toMatch(CJK_RANGE)
+
+      for (const photo of product.gallery ?? []) {
+        expect(photo.captionZh.trim().length).toBeGreaterThan(0)
+        expect(photo.captionZh).toMatch(CJK_RANGE)
+      }
+    },
+  )
+
   it.each(products.map((p) => [p.slug, p] as const))(
     'product "%s" image files referenced on disk actually exist',
     (_slug, product) => {

@@ -1,16 +1,14 @@
+'use client'
+
 import { ClawLogo } from '@/components/claw-logo'
 import { siteConfig } from '@/lib/site-config'
-
-const navLinks = [
-  { label: 'Home', href: '/#home' },
-  { label: 'Machines', href: '/#machines' },
-  { label: 'Business Opportunity', href: '/#business' },
-  { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/#contact' },
-]
+import { NAV_ITEMS, dictionary } from '@/lib/i18n/dictionary'
+import { useLanguage } from '@/lib/i18n/language-context'
 
 export function SiteFooter() {
   const year = new Date().getFullYear()
+  const { language } = useLanguage()
+  const t = dictionary[language]
 
   return (
     <footer className="relative overflow-hidden border-t border-border bg-background">
@@ -49,16 +47,16 @@ export function SiteFooter() {
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wide text-foreground">
-              Explore
+              {t.footer.explore}
             </h3>
             <ul className="mt-4 space-y-2.5">
-              {navLinks.map((link) => (
+              {NAV_ITEMS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    {link.label}
+                    {t.header[link.key]}
                   </a>
                 </li>
               ))}
@@ -67,7 +65,7 @@ export function SiteFooter() {
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wide text-foreground">
-              Contact
+              {t.footer.contact}
             </h3>
             <ul className="mt-4 space-y-2.5">
               <li>
@@ -75,7 +73,7 @@ export function SiteFooter() {
                   href="/#contact"
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Request information
+                  {t.footer.requestInformation}
                 </a>
               </li>
               <li>
@@ -90,7 +88,7 @@ export function SiteFooter() {
                 {siteConfig.address}
               </li>
               <li className="text-sm text-muted-foreground">
-                Service area: {siteConfig.serviceArea}
+                {t.footer.serviceArea}: {siteConfig.serviceArea}
               </li>
             </ul>
           </div>
@@ -98,13 +96,13 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
-            &copy; {year} {siteConfig.businessName}. All rights reserved.
+            &copy; {year} {siteConfig.businessName}. {t.footer.rightsReserved}
           </p>
           <a
             href="/#home"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            Back to top &uarr;
+            {t.footer.backToTop} &uarr;
           </a>
         </div>
       </div>

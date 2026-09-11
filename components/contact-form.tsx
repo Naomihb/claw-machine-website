@@ -14,17 +14,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-
-const businessTypes = [
-  'Arcade',
-  'Mall / Shopping Center',
-  'Family Entertainment Center',
-  'Trampoline Park',
-  'Restaurant',
-  'Bowling Center',
-  'Investor / New Business',
-  'Other',
-]
+import { dictionary } from '@/lib/i18n/dictionary'
+import { useLanguage } from '@/lib/i18n/language-context'
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
@@ -52,6 +43,8 @@ async function getRecaptchaToken(): Promise<string | undefined> {
 export function ContactForm() {
   const [submitting, setSubmitting] = useState(false)
   const [businessType, setBusinessType] = useState('')
+  const { language } = useLanguage()
+  const t = dictionary[language].contact
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -84,20 +77,14 @@ export function ContactForm() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
-        throw new Error(data.error || 'Something went wrong.')
+        throw new Error(data.error || t.genericErrorToast)
       }
 
-      toast.success(
-        'Thank you. We received your request and will contact you soon.',
-      )
+      toast.success(t.successToast)
       form.reset()
       setBusinessType('')
     } catch (err) {
-      toast.error(
-        err instanceof Error
-          ? err.message
-          : 'Something went wrong. Please try again or call us.',
-      )
+      toast.error(err instanceof Error ? err.message : t.genericErrorToast)
     } finally {
       setSubmitting(false)
     }
@@ -114,19 +101,19 @@ export function ContactForm() {
 
       <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
         <div className="grid gap-2">
-          <Label htmlFor="name">Name</Label>
+          <Label htmlFor="name">{t.formName}</Label>
           <Input id="name" name="name" required autoComplete="name" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="company">Company Name</Label>
+          <Label htmlFor="company">{t.formCompany}</Label>
           <Input id="company" name="company" autoComplete="organization" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="phone">Phone Number</Label>
+          <Label htmlFor="phone">{t.formPhone}</Label>
           <Input id="phone" name="phone" type="tel" autoComplete="tel" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="email">Email Address</Label>
+          <Label htmlFor="email">{t.formEmail}</Label>
           <Input
             id="email"
             name="email"
@@ -136,20 +123,20 @@ export function ContactForm() {
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="location">City / State</Label>
+          <Label htmlFor="location">{t.formLocation}</Label>
           <Input id="location" name="location" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="businessType">Business Type</Label>
+          <Label htmlFor="businessType">{t.formBusinessType}</Label>
           <Select
             value={businessType}
             onValueChange={(value) => setBusinessType(value ?? '')}
           >
             <SelectTrigger id="businessType" className="w-full">
-              <SelectValue placeholder="Select business type" />
+              <SelectValue placeholder={t.formBusinessTypePlaceholder} />
             </SelectTrigger>
             <SelectContent>
-              {businessTypes.map((type) => (
+              {t.businessTypes.map((type) => (
                 <SelectItem key={type} value={type}>
                   {type}
                 </SelectItem>
@@ -158,18 +145,16 @@ export function ContactForm() {
           </Select>
         </div>
         <div className="grid gap-2 sm:col-span-2">
-          <Label htmlFor="quantity">
-            How many machines are you interested in?
-          </Label>
+          <Label htmlFor="quantity">{t.formQuantity}</Label>
           <Input id="quantity" name="quantity" inputMode="numeric" />
         </div>
         <div className="grid gap-2 sm:col-span-2">
-          <Label htmlFor="message">Message</Label>
+          <Label htmlFor="message">{t.formMessage}</Label>
           <Textarea
             id="message"
             name="message"
             rows={5}
-            placeholder="Tell us about your location and the type of setup you're looking for."
+            placeholder={t.formMessagePlaceholder}
           />
         </div>
 
@@ -192,7 +177,7 @@ export function ContactForm() {
             disabled={submitting}
             className="text-base"
           >
-            {submitting ? 'Submitting…' : 'Submit Request'}
+            {submitting ? t.submitting : t.submit}
           </Button>
         </div>
       </form>

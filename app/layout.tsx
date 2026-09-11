@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Rajdhani, Geist_Mono } from 'next/font/google'
 import Script from 'next/script'
 import { Toaster } from '@/components/ui/sonner'
+import { LanguageProvider } from '@/lib/i18n/language-context'
 import './globals.css'
 
 const inter = Inter({ variable: '--font-inter', subsets: ['latin'] })
@@ -82,8 +83,10 @@ export default function RootLayout({
       className={`${inter.variable} ${rajdhani.variable} ${geistMono.variable} bg-background`}
     >
       <body className="font-sans antialiased">
-        {children}
-        <Toaster richColors position="top-center" />
+        <LanguageProvider>
+          {children}
+          <Toaster richColors position="top-center" />
+        </LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
         {gaId ? (
           <>

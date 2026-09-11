@@ -1,8 +1,15 @@
+'use client'
+
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { StarField } from '@/components/star-field'
+import { dictionary } from '@/lib/i18n/dictionary'
+import { useLanguage } from '@/lib/i18n/language-context'
 
 export function Hero() {
+  const { language } = useLanguage()
+  const t = dictionary[language].hero
+
   return (
     <section id="home" className="relative scroll-mt-20 overflow-hidden">
       <div
@@ -16,17 +23,16 @@ export function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl">
             <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-              Commercial claw machines · United States
+              {t.badge}
             </span>
             <h1 className="mt-6 text-pretty font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-              Claw machines built to{' '}
+              {t.headingPrefix}{' '}
               <span className="bg-gradient-to-r from-sky-300 to-emerald-300 bg-clip-text text-transparent">
-                keep your floor busy
+                {t.headingHighlight}
               </span>
             </h1>
             <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
-              Commercial-grade cranes for arcades, malls, and family
-              entertainment centers — reliable, eye-catching, and easy to run.
+              {t.subheading}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button
@@ -35,7 +41,7 @@ export function Hero() {
                 size="lg"
                 className="text-base"
               >
-                Request Product Information
+                {t.ctaPrimary}
               </Button>
               <Button
                 render={<a href="/#contact" />}
@@ -44,7 +50,7 @@ export function Hero() {
                 variant="outline"
                 className="text-base"
               >
-                Contact Us
+                {t.ctaSecondary}
               </Button>
             </div>
           </div>

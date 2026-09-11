@@ -5,17 +5,14 @@ import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/lib/site-config'
 import { ClawLogo } from '@/components/claw-logo'
-
-const navLinks = [
-  { label: 'Home', href: '/#home' },
-  { label: 'Machines', href: '/#machines' },
-  { label: 'Business Opportunity', href: '/#business' },
-  { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/#contact' },
-]
+import { LanguageToggle } from '@/components/language-toggle'
+import { NAV_ITEMS, dictionary } from '@/lib/i18n/dictionary'
+import { useLanguage } from '@/lib/i18n/language-context'
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
+  const { language } = useLanguage()
+  const t = dictionary[language]
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
@@ -28,24 +25,25 @@ export function SiteHeader() {
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
-          {navLinks.map((link) => (
+          {NAV_ITEMS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              {link.label}
+              {t.header[link.key]}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageToggle className="hidden sm:inline-flex" />
           <Button
             render={<a href="/#contact" />}
             nativeButton={false}
             className="hidden sm:inline-flex"
           >
-            Request Info
+            {t.header.requestInfo}
           </Button>
           <button
             type="button"
@@ -65,24 +63,25 @@ export function SiteHeader() {
             className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
             aria-label="Mobile"
           >
-            {navLinks.map((link) => (
+            {NAV_ITEMS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted"
               >
-                {link.label}
+                {t.header[link.key]}
               </a>
             ))}
-            <div className="mt-2 flex flex-col gap-2">
+            <div className="mt-2 flex flex-col gap-3">
+              <LanguageToggle className="self-start" />
               <Button
                 render={<a href="/#contact" />}
                 nativeButton={false}
                 className="w-full"
                 onClick={() => setOpen(false)}
               >
-                Request Info
+                {t.header.requestInfo}
               </Button>
             </div>
           </nav>

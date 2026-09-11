@@ -1,19 +1,15 @@
+'use client'
+
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { StarField } from '@/components/star-field'
-
-const audiences = [
-  'Mall owners',
-  'Arcade operators',
-  'Family entertainment centers',
-  'Trampoline parks',
-  'Restaurant owners',
-  'Bowling centers',
-  'Retail space operators',
-  'Investors interested in claw machine stores',
-]
+import { dictionary } from '@/lib/i18n/dictionary'
+import { useLanguage } from '@/lib/i18n/language-context'
 
 export function BusinessOpportunity() {
+  const { language } = useLanguage()
+  const t = dictionary[language].business
+
   return (
     <section
       id="business"
@@ -48,18 +44,14 @@ export function BusinessOpportunity() {
 
           <div className="order-1 max-w-xl lg:order-2">
             <h2 className="text-balance font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Start or Expand Your Claw Machine Business
+              {t.heading}
             </h2>
             <p className="mt-5 text-pretty text-lg leading-relaxed text-muted-foreground">
-              Claw machines are a popular attraction for entertainment venues
-              and retail spaces. They can help create repeat play, increase
-              guest spending, and add visual energy to your location. We can
-              support operators who want to open a claw machine store or add
-              machines to an existing business.
+              {t.description}
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {audiences.map((audience) => (
+              {t.audiences.map((audience) => (
                 <span
                   key={audience}
                   className="rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted-foreground"
@@ -75,7 +67,7 @@ export function BusinessOpportunity() {
               size="lg"
               className="mt-8 text-base"
             >
-              Talk to Us About Your Location
+              {t.cta}
             </Button>
           </div>
         </div>
